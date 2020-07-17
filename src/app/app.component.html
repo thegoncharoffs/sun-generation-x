@@ -1,0 +1,68 @@
+<header class="app-root__header">
+    <div class="app-root__logo" routerLink="/main">
+        <svg class="app-root__logo-icon"
+             width="70" height="70"
+             viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34.9809 3.93344C17.8341 3.93344 3.89525 17.8723 3.89525 35.0191C3.89525 52.1658 17.8341 66.1047 34.9809 66.1047C52.1276 66.1047 66.0665 52.1277 66.0665 34.9809C66.0665 17.8723 52.1276 3.93344 34.9809 3.93344ZM34.9809 63.126C19.4763 63.126 6.83579 50.4855 6.83579 34.9809C6.83579 19.4763 19.4763 6.83579 34.9809 6.83579C50.4855 6.83579 63.126 19.4763 63.126 34.9809C63.126 50.4855 50.5237 63.126 34.9809 63.126ZM34.9809 9.43262C20.8892 9.43262 9.43262 20.8892 9.43262 34.9809C9.43262 49.0726 20.8892 60.5292 34.9809 60.5292C49.0725 60.5292 60.5292 49.0726 60.5292 34.9809C60.5292 20.8892 49.0725 9.43262 34.9809 9.43262ZM34.9809 55.5264C23.677 55.5264 14.4353 46.323 14.4353 34.9809C14.4353 23.6388 23.677 14.4735 34.9809 14.4735C46.2848 14.4735 55.5264 23.677 55.5264 35.0191C55.5264 46.3611 46.3229 55.5264 34.9809 55.5264ZM52.9296 34.9809C52.9296 44.8718 44.8718 52.9296 34.9809 52.9296C25.09 52.9296 17.0322 44.8718 17.0322 34.9809C17.0322 25.09 25.09 17.0322 34.9809 17.0322C44.8718 17.0322 52.9296 25.09 52.9296 34.9809ZM34.9809 0C15.6574 0 0 15.6574 0 34.9809C0 54.3044 15.6574 69.9618 34.9809 69.9618C54.3044 69.9618 69.9618 54.3044 69.9618 34.9809C70 15.6574 54.3044 0 34.9809 0ZM34.9809 68.6634C16.4212 68.6634 1.29842 53.5406 1.29842 34.9809C1.33661 16.4212 16.4212 1.33661 34.9809 1.33661C53.5406 1.33661 68.6634 16.4594 68.6634 35.0191C68.6634 53.5406 53.5406 68.6634 34.9809 68.6634Z" fill="url(#paint0_radial)"/>
+            <defs>
+                <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(34.992 34.992) scale(34.992)">
+                    <stop stop-color="#E17B32"/>
+                    <stop offset="0.770833" stop-color="#F5AA2B"/>
+                </radialGradient>
+            </defs>
+        </svg>
+
+        <div class="app-root__logo-text">
+            СОЛНЕЧНАЯ ГЕНЕРАЦИЯ X
+        </div>
+    </div>
+
+    <nav class="app-root__nav">
+        <a class="app-root__nav-item" routerLink="/main" routerLinkActive="_active"> {{'pages.main' | translate}} </a>
+        <a class="app-root__nav-item" routerLink="/documents" routerLinkActive="_active"> {{'pages.documents' | translate}} </a>
+        <a class="app-root__nav-item" routerLink="/contacts" routerLinkActive="_active"> {{'pages.contacts' | translate}} </a>
+
+        <app-language-dropdown
+            class="app-root__language-dropdown"
+        >
+        </app-language-dropdown>
+    </nav>
+</header>
+
+
+<router-outlet></router-outlet>
+
+<footer class="app-root__footer">
+    <span class="app-root__footer-text">
+        © 2020 СФО ООО <br>
+        «Специализированное финансовое общество <br>
+        Солнечная генерация Х»
+    </span>
+    <div class="app-root__footer-separator"></div>
+    <div class="app-root__contact">
+
+        <div class="app-root__contact-item">
+            <svg-icon
+                src="./assets/icons/location.svg"
+                class="app-root__contact-icon"
+            ></svg-icon>
+            <span class="app-root__contact-text">{{ 'address' | translate }}</span>
+        </div>
+
+        <div class="app-root__contact-item">
+            <svg-icon
+                src="./assets/icons/phone.svg"
+                class="app-root__contact-icon"
+            ></svg-icon>
+            <span class="app-root__contact-text">+7 (903) 233-23-34</span>
+        </div>
+
+        <div class="app-root__contact-item">
+            <svg-icon
+                src="./assets/icons/mail.svg"
+                class="app-root__contact-icon"
+            ></svg-icon>
+            <span class="app-root__contact-text">someemail@gmail.com</span>
+        </div>
+    </div>
+</footer>

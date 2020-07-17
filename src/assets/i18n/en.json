@@ -1,0 +1,8 @@
+{
+  "pages": {
+    "main": "Main",
+    "services": "Services",
+    "documents": "Documents",
+    "contacts": "Contacts"
+  }
+}

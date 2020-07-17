@@ -1,0 +1,19 @@
+@mixin font-face($file-name, $font-family, $font-weight: 400, $font-style: normal) {
+  @font-face {
+    font-family: "#{$font-family}";
+    src: url("./assets/fonts/#{$file-name}.woff") format('woff');
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-display: swap;
+  }
+}
+
+//@include font-face(NotoSans-Thin, NotoSans, 100);
+@include font-face(NotoSans-ExtraLight, NotoSans, 200);
+//@include font-face(NotoSans-Light, NotoSans, 300);
+@include font-face(NotoSans-Regular, NotoSans, 400);
+//@include font-face(NotoSans-Medium, NotoSans, 500);
+//@include font-face(NotoSans-SemiBold, NotoSans, 600);
+@include font-face(NotoSans-Bold, NotoSans, 700);
+//@include font-face(NotoSans-ExtraBold, NotoSans, 800);
+//@include font-face(NotoSans-Black, NotoSans, 900);

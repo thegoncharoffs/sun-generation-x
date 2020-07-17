@@ -1,0 +1,90 @@
+<ul class="app-documents__navigation">
+    <li
+        *ngFor="let group of _documentGroups; let index = index"
+        class="app-documents__navigation-item"
+        [class._selected]="_selectedGroupIndex === index"
+        (click)="_selectedGroupIndex = index"
+    >
+        {{group.title | translate}}
+    </li>
+
+    <li
+        *ngIf="_logged"
+        class="app-documents__navigation-item _logout"
+        (click)="_onLogoutButtonClick()"
+    >
+        {{ 'documents.logout' | translate}}
+    </li>
+</ul>
+
+<div class="app-documents__documents">
+    <div class="app-documents__header">
+        <app-search-field
+            class="app-documents__search"
+            [placeholder]="'documents.search' | translate"
+            (valueChange)="_searchValue = $event"
+        ></app-search-field>
+    </div>
+
+    <ul class="app-documents__list">
+        <ng-container *ngIf="_documentGroups">
+            <li
+                class="app-documents__list-item"
+                *ngFor="let fileName of (_documentGroups[_selectedGroupIndex].fileNames | filter : _searchValue)"
+
+            >
+                <svg-icon
+                    src="./assets/icons/download.svg"
+                    class="app-documents__list-item-icon"
+                    (click)="_onDownloadFileClick(fileName)"
+                ></svg-icon>
+
+                <span class="app-documents__list-item-text"
+                    [innerHTML]="fileName | mark: _searchValue"
+                >
+                </span>
+
+                <svg-icon
+                    src="./assets/icons/delete.svg"
+                    class="app-documents__list-item-icon"
+                    *ngIf="_logged"
+                    (click)="_onDeleteFileClick(fileName)"
+                ></svg-icon>
+            </li>
+
+            <label
+                class="app-documents__list-upload"
+                *ngIf="_logged"
+            >
+                <svg-icon
+                    src="./assets/icons/upload.svg"
+                    class="app-documents__list-upload-icon"
+                ></svg-icon>
+
+                {{'documents.upload-documents' | translate}}
+
+                <input
+                        style="display: none"
+                        id="file-upload"
+                        type="file"
+                        multiple
+                        placeholder="Upload file"
+                        accept=".pdf,.doc,.docx"
+                        (change)="_fileChange($event)"
+                >
+            </label>
+
+
+            <div
+                *ngIf="
+                    (_documentGroups[_selectedGroupIndex].fileNames | filter: _searchValue).length === 0 &&
+                    !_logged
+                "
+                class="app-documents__list-empty"
+            >
+                {{'documents.no-results' | translate}}
+            </div>
+        </ng-container>
+    </ul>
+</div>
+

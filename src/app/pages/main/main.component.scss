@@ -1,0 +1,267 @@
+@import "src/assets/styles/colors";
+@import "src/assets/styles/mixins";
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    background-image: url("/assets/images/solar-batteries.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__tile {
+    background-color: $dark-grey;
+    opacity: 0.8;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    width: 480px;
+    text-align: center;
+    margin: 16px;
+
+    &-header {
+      @include font(36px, 700, $snow-white);
+    }
+
+    &-text {
+      @include font(18px, 200, $snow-white);
+    }
+  }
+
+  &__description {
+    padding: 64px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-text {
+      width: 60%;
+      @include font(26px, 200);
+    }
+  }
+
+  &__rosnano {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-wrapper {
+      flex-grow: 1;
+      background-color: $grey;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 0;
+      width: 50%;
+      min-width: 400px;
+    }
+
+    &-text {
+      width: 70%;
+      @include font(26px, 200, $snow-white);
+    }
+
+    &-image {
+      flex-grow: 1;
+      width: 50%;
+      min-width: 400px;
+    }
+  }
+
+  &__features {
+    display: flex;
+    height: 400px;
+    margin: auto;
+    padding-bottom: 64px;
+
+    &-column {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 33.3%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+      height: 120px;
+      width: 100%;
+      color: $dark-grey;
+      @include font(18, 200);
+      text-align: center;
+      padding-bottom: 4px;
+      border-bottom: 1px solid $dark-grey;
+    }
+
+    &-column:first-child &-row {
+      &:nth-child(1):after {
+        content: '';
+        position: absolute;
+        transform: rotateZ(45deg);
+        right: -42px;
+        bottom: -18px;
+        width: 50px;
+        border-bottom: 1px solid $dark-grey;
+      }
+
+      &:nth-child(2):after {
+        content: '';
+        position: absolute;
+        right: -2vw;
+        bottom: -1px;
+        width: 2vw;
+        border-bottom: 1px solid $dark-grey;
+      }
+
+      &:nth-child(3):after {
+        content: '';
+        position: absolute;
+        transform: rotateZ(-45deg);
+        right: -42px;
+        bottom: 17px;
+        width: 50px;
+        border-bottom: 1px solid $dark-grey;
+      }
+    }
+
+    &-column:last-child &-row {
+      &:nth-child(1):after {
+        content: '';
+        position: absolute;
+        transform: rotateZ(-45deg);
+        left: -42px;
+        bottom: -18px;
+        width: 50px;
+        border-bottom: 1px solid $dark-grey;
+      }
+
+      &:nth-child(2):after {
+        content: '';
+        position: absolute;
+        left: -2vw;
+        bottom: -1px;
+        width: 2vw;
+        border-bottom: 1px solid $dark-grey;
+      }
+
+      &:nth-child(3):after {
+        content: '';
+        position: absolute;
+        transform: rotateZ(45deg);
+        left: -42px;
+        bottom: 17px;
+        width: 50px;
+        border-bottom: 1px solid $dark-grey;
+      }
+    }
+
+    &-icon {
+      margin-top: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & > svg {
+        width: 60%;
+      }
+    }
+  }
+
+  &__pros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 120px;
+    background-color: $primary-orange;
+
+    &-item {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      min-width: 200px;
+      width: 15%;
+      padding: 0 32px;
+      flex-grow: 1;
+      margin-bottom: 32px;
+    }
+
+    &-icon {
+      margin-bottom: 16px;
+    }
+
+    &-title {
+      @include font(26px, 700, $snow-white);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    &-text {
+      @include font(18px, 400, $snow-white);
+      text-align: center;
+    }
+  }
+
+  &__partners {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    padding:  32px 120px;
+
+    &-header {
+      margin: 32px 0;
+      text-align: center;
+      @include font(36px, 700);
+    }
+
+    &-list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    &-link {
+      overflow: hidden;
+      margin: auto;
+      padding: 0 16px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+
+      & > img {
+        width: 140px;
+        height: 140px;
+      }
+
+      &:hover {
+        filter: grayscale(0%);
+      }
+    }
+
+    &-logo {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  @media only screen and (max-width: 960px) {
+    &__pros {
+      padding: 0 30px;
+    }
+  }
+}

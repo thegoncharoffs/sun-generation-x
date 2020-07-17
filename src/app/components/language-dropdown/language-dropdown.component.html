@@ -1,0 +1,42 @@
+<div
+    class="app-language-dropdown__icons-wrapper"
+    (click)="_visible = !_visible"
+>
+    <div
+        class="app-language-dropdown__flag"
+        [ngSwitch]="_language"
+    >
+        <ng-template [ngSwitchCase]="'ru'">
+            <svg-icon
+                src="./assets/icons/flag-ru.svg"
+            ></svg-icon>
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="'en'">
+            <svg-icon
+                src="./assets/icons/flag-en.svg"
+            ></svg-icon>
+        </ng-template>
+    </div>
+
+    <svg
+        class="app-language-dropdown__arrow"
+        width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M6 6L0.803848 0.75L11.1962 0.75L6 6Z" fill="#404040"/>
+    </svg>
+</div>
+
+<ul class="app-language-dropdown__list"
+    [class._hidden]="!_visible"
+>
+    <li
+        class="app-language-dropdown__list-item"
+        *ngFor="let language of _languages"
+        [class._selected]="_language === language"
+        (click)="_selectLanguage(language)"
+    >
+        {{language}}
+    </li>
+</ul>
+
