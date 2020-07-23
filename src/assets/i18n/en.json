@@ -1,6 +1,7 @@
 {
   "pages": {
-    "main": "Main",
+    "main": "About us",
+    "news": "News",
     "services": "Services",
     "documents": "Documents",
     "contacts": "Contacts"

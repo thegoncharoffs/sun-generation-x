@@ -10,6 +10,7 @@ dotenv.config({ path: path.join(__dirname, "config/config.env") });
 // Controllers
 const auth = require("./controllers/auth");
 const file = require("./controllers/file");
+const news = require("./controllers/news");
 
 // Utils
 const { initFilesConfig } = require("./utils/filesConfig");
@@ -29,7 +30,8 @@ app.use(fileUpload());
 
 // Init controllers
 app.use("/api", auth);
-app.use("/api", file);
+app.use("/api/files", file);
+app.use("/api/news", news);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`App running at ${process.env.PORT || 3000}`);

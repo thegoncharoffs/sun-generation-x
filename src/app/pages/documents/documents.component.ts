@@ -1,10 +1,9 @@
 import { ChangeDetectorRef, Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
-import { UploadService } from "../../services/upload.service";
 import { AuthService } from "../../services/auth.service";
 import { DocumentGroup } from 'src/app/models/documents-group.model';
-import { ConfigService } from 'src/app/services/config.service';
 import { BASE_URL } from "../../app.config";
 import { Router } from "@angular/router";
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
     selector: 'app-documents',
@@ -23,16 +22,15 @@ export class DocumentsComponent implements OnInit {
     _logged: boolean = false;
 
     constructor(
-        private uploadService: UploadService,
+        private fileService: FileService,
         private authService: AuthService,
-        private configService: ConfigService,
         private cdr: ChangeDetectorRef,
         private router: Router,
     ) {
     }
 
     ngOnInit(): void {
-        this.configService.loadConfig().subscribe((config => {
+        this.fileService.loadFiles().subscribe((config => {
             this._loading = false;
             this._documentGroups = config;
             this.cdr.detectChanges();
@@ -44,7 +42,7 @@ export class DocumentsComponent implements OnInit {
     _fileChange(event) {
         this._loading = true;
 
-        this.uploadService.uploadFile(event.target.files, this._documentGroups[this._selectedGroupIndex].directoryName).subscribe(
+        this.fileService.uploadFiles(event.target.files, this._documentGroups[this._selectedGroupIndex].directoryName).subscribe(
             (config) => {
                 this._documentGroups = config;
                 this._loading = false;
@@ -69,7 +67,7 @@ export class DocumentsComponent implements OnInit {
     _onDeleteFileClick(fileName: string) {
         this._loading = true;
 
-        this.uploadService.deleteFile(fileName, this._documentGroups[this._selectedGroupIndex].directoryName).subscribe(
+        this.fileService.deleteFile(fileName, this._documentGroups[this._selectedGroupIndex].directoryName).subscribe(
             (config) => {
                 this._documentGroups = config;
                 this._loading = false;

@@ -96,9 +96,9 @@ function downloadFile(req, res) {
 }
 
 router
-  .get("/files", getFiles)
-  .get("/download", downloadFile)
-  .post("/upload", verifyToken, uploadFiles)
-  .delete("/delete", verifyToken, deleteFile);
+  .get("/all", getFiles)
+  .get("", downloadFile)
+  .post("", verifyToken, uploadFiles)
+  .delete("", verifyToken, deleteFile);
 
 module.exports = router;

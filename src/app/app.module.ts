@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './pages/main/main.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { DocumentsComponent } from './pages/documents/documents.component';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
@@ -16,11 +15,13 @@ import { MarkPipe } from './pipes/mark.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { AuthService } from "./services/auth.service";
 import { TokenStorageService } from "./services/token-storage.service";
-import { UploadService } from "./services/upload.service";
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { authInterceptorProviders } from './interceptors/auth.interceptor';
-import { ConfigService } from './services/config.service';
+import { FileService } from './services/file.service';
+import { NewsService } from './services/news.service';
+import { NewsComponent } from './pages/news/news.component';
+import { AboutComponent } from './pages/about/about.component';
 
 const mapConfig: IConfig = {
     apiKey: 'API_KEY',
@@ -30,7 +31,7 @@ const mapConfig: IConfig = {
 @NgModule({
     declarations: [
         AppComponent,
-        MainComponent,
+        AboutComponent,
         ContactsComponent,
         DocumentsComponent,
         SearchFieldComponent,
@@ -38,6 +39,7 @@ const mapConfig: IConfig = {
         MarkPipe,
         FilterPipe,
         LoginComponent,
+        NewsComponent,
     ],
     imports: [
         BrowserModule,
@@ -57,8 +59,8 @@ const mapConfig: IConfig = {
     providers: [
         AuthService,
         TokenStorageService,
-        UploadService,
-        ConfigService,
+        FileService,
+        NewsService,
         authInterceptorProviders,
     ],
     bootstrap: [AppComponent]

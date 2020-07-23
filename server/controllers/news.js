@@ -1,5 +1,6 @@
 const express = require("express");
 const { readNewsConfig, updateNewsConfig } = require("../utils/newsConfig");
+const verifyToken = require("../middlewares/verifyToken");
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ function updateNews(req, res) {
   newsConfig.push(req.body);
   updateNewsConfig(newsConfig);
 
-  res.status(200).send("News updated successfully");
+  res.status(200).send(newsConfig);
 }
 
 function deleteNews(req, res) {
@@ -30,12 +31,12 @@ function deleteNews(req, res) {
   newsConfig = newsConfig.filter((news) => news.date !== req.body.date);
   updateNewsConfig(newsConfig);
 
-  res.status(200).send("News deleted successfully");
+  res.status(200).send(newsConfig);
 }
 
 router
-  .get("/news", getNews)
-  .post("/news", verifyToken, updateNews)
-  .delete("/news", verifyToken, deleteNews);
+  .get("", getNews)
+  .post("", verifyToken, updateNews)
+  .delete("", verifyToken, deleteNews);
 
 module.exports = router;

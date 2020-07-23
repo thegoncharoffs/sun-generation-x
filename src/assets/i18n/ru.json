@@ -2,6 +2,7 @@
   "address": "Россия, Москва, адрес, 123433",
   "pages": {
     "main": "О нас",
+    "news": "Новости",
     "services": "Наши Услуги",
     "documents": "Документы и Отчетность",
     "contacts": "Контакты"
@@ -14,13 +15,13 @@
     "login-needed": "Требуется Вход"
   },
   "main": {
-    "tile":{
+    "tile": {
       "header": "Мы - лидеры",
       "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpa"
     },
     "description": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpaolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpa Lorem ipsum dolor sit amet, conse minus mollitia necessitatibus officia porro quam quas quidem repellat sequi, similique sint tenetur ullam, voluptatem voluptatum? Architecto do",
     "rosnano": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpaolor sit amet, co, conse minus mollitia necessitatibus officia porro quam quas quidem repellat sequi, similique sint tenetur ullam, voluptatem voluptatum? Architecto do",
-    "pros":  {
+    "pros": {
       "expertise": "Экспертность",
       "expertise-text": "Наша команда состоит только из высококвалифицированных сотрудников",
       "result": "Результат",
