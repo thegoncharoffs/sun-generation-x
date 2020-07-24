@@ -5,7 +5,7 @@
         [class._selected]="_selectedGroupIndex === index"
         (click)="_selectedGroupIndex = index"
     >
-        {{group.title | translate}}
+        {{group.title | dictionaryTranslate}}
     </li>
 
     <li
@@ -64,13 +64,13 @@
                 {{'documents.upload-documents' | translate}}
 
                 <input
-                        style="display: none"
-                        id="file-upload"
-                        type="file"
-                        multiple
-                        placeholder="Upload file"
-                        accept=".pdf,.doc,.docx"
-                        (change)="_fileChange($event)"
+                    style="display: none"
+                    id="file-upload"
+                    type="file"
+                    multiple
+                    placeholder="Upload file"
+                    accept=".pdf,.doc,.docx"
+                    (change)="_onUploadFileChange($event)"
                 >
             </label>
 

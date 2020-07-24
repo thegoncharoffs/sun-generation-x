@@ -16,9 +16,9 @@ export class NewsService {
         return this.http.post(BASE_URL + "news", news);
     }
 
-    deleteNews(date: Date): Observable<any> {
+    deleteNews(date: string): Observable<any> {
         const params = {
-            date: date.toISOString(),
+            date,
         };
 
         return this.http.delete(BASE_URL + "news", { params });

@@ -39,7 +39,7 @@
 
     &-header {
       @include font(32px, 700);
-      margin-bottom: 32px;
+      margin-bottom: 40;
     }
 
     &-title {
@@ -49,13 +49,14 @@
 
     &-text {
       @include font(20px, 200);
-      margin-bottom: 32px;
+      margin-bottom: 50px;
     }
   }
 
   @media only screen and (max-width: 960px) {
     &__info {
       flex-direction: column;
+      padding: 0 60px;
     }
 
     &__description {

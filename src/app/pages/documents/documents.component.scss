@@ -23,10 +23,8 @@
       height: 52px;
       background-color: $dark-grey;
       @include font(18px, 400, $snow-white);
-      transition: transform 0.2s ease,
-      background-color 0.2s ease,
-      border 0.2s ease,
-      color 0.2s ease;
+      transition: transform 0.2s ease, background-color 0.2s ease,
+        border 0.2s ease, color 0.2s ease;
       cursor: pointer;
       margin-bottom: 10px;
       padding-left: 16px;
@@ -54,6 +52,7 @@
   &__documents {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     width: 100%;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
   }
@@ -103,6 +102,9 @@
 
       &-text {
         margin-right: 16px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         @include font(19px);
       }
     }
@@ -121,7 +123,7 @@
 
     &-empty {
       margin: auto;
-      @include font(19px, 400, $grey);
+      @include font(30px, 400, $grey);
     }
   }
 

@@ -1,5 +1,7 @@
+import { Dictionary } from './dictionary.model';
+
 export interface DocumentGroup {
-    title: string;
+    title: Dictionary;
     directoryName: string;
     fileNames: string[];
 }

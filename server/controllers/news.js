@@ -15,20 +15,20 @@ function updateNews(req, res) {
     newsConfig = [];
   }
 
-  newsConfig.push(req.body);
+  newsConfig.unshift(req.body);
   updateNewsConfig(newsConfig);
 
   res.status(200).send(newsConfig);
 }
 
 function deleteNews(req, res) {
-  const newsConfig = readNewsConfig();
+  let newsConfig = readNewsConfig();
 
   if (!newsConfig) {
     res.status(500).send("No news on the server");
   }
 
-  newsConfig = newsConfig.filter((news) => news.date !== req.body.date);
+  newsConfig = newsConfig.filter((news) => news.date !== req.query.date);
   updateNewsConfig(newsConfig);
 
   res.status(200).send(newsConfig);

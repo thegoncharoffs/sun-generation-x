@@ -23,12 +23,18 @@ exports.updateFilesConfig = (config) => {
 exports.initFilesConfig = () => {
   filesConfig = [
     {
-      title: "documents.types.type1",
+      title: {
+        en: "2",
+        ru: "Эмисионные документы",
+      },
       directoryName: "files1",
       fileNames: [],
     },
     {
-      title: "documents.types.type2",
+      title: {
+        en: "2",
+        ru: "Эмисионные документы2",
+      },
       directoryName: "files2",
       fileNames: [],
     },

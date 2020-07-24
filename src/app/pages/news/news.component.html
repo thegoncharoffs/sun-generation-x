@@ -1,0 +1,47 @@
+<form 
+    *ngIf="_logged"
+    class="app-news__form"
+    [formGroup]="_form"
+    (ngSubmit)="_postNews(_form.value)"
+>
+    <h1 class="app-news__title">{{"news.add-news" | translate}}</h1>
+
+    <label class="app-news__label">Заголовок*</label>
+    <input class="app-news__text-field" formControlName="titleRu">
+    <label class="app-news__label">Title*</label>
+    <input class="app-news__text-field" formControlName="titleEn">
+
+    <label class="app-news__label">Текст*</label>
+    <textarea class="app-news__memo-field" formControlName="textRu"></textarea>
+    <label class="app-news__label">Text*</label>
+    <textarea class="app-news__memo-field" formControlName="textEn"></textarea>
+
+    <div class="app-news__button-wrapper">
+        <button class="app-news__button" [disabled]="_form.invalid" type="submit">{{ "news.save" | translate }}</button>
+        <button class="app-news__button" (click)="_onLogoutButtonClick()">{{ "news.exit" | translate }}</button>
+    </div>
+</form>
+
+<!-- News list -->
+<div class="app-news__list">
+    <ng-container *ngIf="_newsList?.length > 0; else emptyNewsTpl">
+        <ng-container *ngFor="let news of _newsList">
+            <div class="app-news__item">
+                <div class="app-news__item-title">{{ news.title | dictionaryTranslate }}</div>
+                <div class="app-news__item-text">{{ news.text | dictionaryTranslate }}</div>
+                <div class="app-news__item-date">
+                    {{ news.date | date: "dd/MM/yyyy" }}
+                </div>
+
+                <svg-icon src="./assets/icons/delete.svg" class="app-news__item-icon" *ngIf="_logged"
+                    (click)="_onDeleteNewsClick(news.date)"></svg-icon>
+            </div>
+
+            <div class="app-news__separator"></div>
+        </ng-container>
+    </ng-container>
+
+    <ng-template #emptyNewsTpl>
+        <span class="app-news__no-news">{{"news.no-news" | translate}}</span>
+    </ng-template>
+</div>

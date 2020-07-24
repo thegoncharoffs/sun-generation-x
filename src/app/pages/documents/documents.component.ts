@@ -39,7 +39,7 @@ export class DocumentsComponent implements OnInit {
         this._logged = this.authService.isLoggedIn();
     }
 
-    _fileChange(event) {
+    _onUploadFileChange(event) {
         this._loading = true;
 
         this.fileService.uploadFiles(event.target.files, this._documentGroups[this._selectedGroupIndex].directoryName).subscribe(

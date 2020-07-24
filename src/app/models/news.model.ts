@@ -1,5 +1,7 @@
+import { Dictionary } from './dictionary.model';
+
 export interface News {
-    title: string;
-    text: string;
-    date: Date;
+    title: Dictionary;
+    text: Dictionary;
+    date: string;
 }
