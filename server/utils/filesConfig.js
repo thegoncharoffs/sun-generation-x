@@ -24,16 +24,16 @@ exports.initFilesConfig = () => {
   filesConfig = [
     {
       title: {
-        en: "2",
-        ru: "Эмисионные документы",
+        en: "Documents 1",
+        ru: "Документы 1",
       },
       directoryName: "files1",
       fileNames: [],
     },
     {
       title: {
-        en: "2",
-        ru: "Эмисионные документы2",
+        en: "Documents 2",
+        ru: "Документы 2",
       },
       directoryName: "files2",
       fileNames: [],
@@ -42,10 +42,12 @@ exports.initFilesConfig = () => {
 
   filesPath = path.join(__dirname, "../data/files");
 
+  fs.mkdirSync(filesPath);
+
   filesConfig.forEach((element) => {
-    element.fileNames = fs.readdirSync(
-      path.join(filesPath, element.directoryName)
-    );
+    const groupFolder = path.join(filesPath, element.directoryName);
+    fs.mkdirSync(groupFolder);
+    element.fileNames = fs.readdirSync(groupFolder);
   });
   this.updateFilesConfig(filesConfig);
 };
