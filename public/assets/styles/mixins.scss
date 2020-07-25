@@ -1,0 +1,9 @@
+@import "colors";
+
+@mixin font($size: 13px, $weight: 400, $color: $subtle-black) {
+  text-decoration: none;
+  font-family: NotoSans, sans-serif;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
