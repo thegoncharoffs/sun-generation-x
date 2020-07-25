@@ -3,6 +3,7 @@
 
 .app-about {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   align-items: center;
 
@@ -37,7 +38,7 @@
   }
 
   &__description {
-    padding: 64px 0;
+    padding: 60px 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,18 +52,15 @@
 
   &__rosnano {
     display: flex;
-    flex-wrap: wrap;
 
     &-wrapper {
-      flex-grow: 1;
       background-color: $grey;
+      flex: 1 1 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px 0;
-      width: 50%;
-      min-width: 400px;
-      max-height: 40vh;
+      padding: 32px;
+      min-height: 40vh;
     }
 
     &-text {
@@ -71,10 +69,9 @@
     }
 
     &-image {
-      flex-grow: 1;
-      width: 50%;
-      min-width: 400px;
-      max-height: 40vh;
+      flex: 1 1 50%;
+      max-width: 100%;
+      min-width: 300px;
     }
   }
 
@@ -195,7 +192,7 @@
       min-width: 200px;
       min-height: 40vh;
       width: 15%;
-      padding: 0 32px;
+      padding: 32px;
       flex-grow: 1;
     }
 
@@ -264,6 +261,25 @@
   }
 
   @media only screen and (max-width: 960px) {
+    &__tile {
+      &-header {
+        font-size: 26px;
+      }
+
+      &-text {
+        font-size: 16px;
+      }
+    }
+
+    &__description-text {
+      width: 80%;
+      font-size: 20px;
+    }
+
+    &__rosnano {
+      flex-direction: column;
+    }
+
     &__pros {
       padding: 0 30px;
     }
