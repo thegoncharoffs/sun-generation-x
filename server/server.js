@@ -24,7 +24,7 @@ initNewsConfig();
 const app = express();
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // Init middlewares
 app.use(cors({ origin: "*" }));
@@ -37,7 +37,7 @@ app.use("/api/files", file);
 app.use("/api/news", news);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 app.listen(process.env.PORT || 3000, () => {

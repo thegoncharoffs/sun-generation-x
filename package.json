@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
+    "serve": "ng serve -o",
     "server": "nodemon ./server/server.js",
+    "start": "node ./server/server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -63,5 +64,8 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.8.3"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
