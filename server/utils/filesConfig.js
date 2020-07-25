@@ -40,14 +40,14 @@ exports.initFilesConfig = () => {
     },
   ];
 
-  filesPath = path.join(__dirname, "../data/files");
+  filesFolder = path.join(__dirname, "/../data/files");
 
-  fs.mkdirSync(filesPath);
+  fs.mkdirSync(filesFolder);
 
   filesConfig.forEach((element) => {
-    const groupFolder = path.join(filesPath, element.directoryName);
+    const groupFolder = path.join(filesFolder, element.directoryName);
     fs.mkdirSync(groupFolder);
-    element.fileNames = fs.readdirSync(groupFolder);
+    element.fileNames = [];
   });
   this.updateFilesConfig(filesConfig);
 };
