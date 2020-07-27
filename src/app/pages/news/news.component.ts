@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { News } from 'src/app/models/news.model';
 import { NewsService } from 'src/app/services/news.service';
@@ -11,6 +11,7 @@ import { Subject } from 'rxjs';
     templateUrl: './news.component.html',
     styleUrls: ['./news.component.scss'],
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsComponent implements OnInit, OnDestroy {
     @HostBinding("class.app-news") true;

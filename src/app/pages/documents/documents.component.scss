@@ -3,6 +3,7 @@
 
 .app-documents {
   display: flex;
+  justify-content: center;
   height: 100%;
   margin: 30px 120px;
 
@@ -122,21 +123,24 @@
     }
 
     &-empty {
-      margin: auto;
       @include font(30px, 400, $grey);
+      text-align: center;
     }
   }
 
   @media only screen and (max-width: 960px) {
     flex-direction: column;
-    margin: 16px;
+    justify-content: start;
+    align-items: center;
+    margin: 20px;
 
-    &__description {
-      padding: 32px;
+    &__loader {
+      margin-top: 140px !important;
     }
 
     &__navigation {
       margin-right: 0;
+      width: 100%;
 
       &-item {
         &._selected,
@@ -155,9 +159,12 @@
       }
 
       &-item-text,
-      &-empty,
       &-upload {
         font-size: 16px;
+      }
+
+      &-empty {
+        font-size: 22px;
       }
     }
   }

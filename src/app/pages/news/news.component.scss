@@ -6,12 +6,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  flex-grow: 1;
-  margin: 60px 120px;
-
-  @media only screen and (max-width: 960px) {
-    margin: 60px;
-  }
+  margin: 30px 120px;
 
   &__form {
     display: flex;
@@ -35,17 +30,20 @@
     min-width: 100%;
     max-width: 100%;
     border: 2px solid $grey;
-    border-radius: 4px;
-    padding: 0 16px;
+    border-radius: 0;
+    padding: 0 8px;
 
     &:focus {
       border-color: $dark-grey;
+      border-radius: 0;
+      outline: none;
     }
   }
 
   &__memo-field {
-    height: 100px;
-    padding: 16px;
+    height: 150px;
+    min-height: 100px;
+    padding: 8px;
   }
 
   &__button {
@@ -55,9 +53,17 @@
     }
 
     width: 160px;
-    height: 32px;
+    height: 40px;
     margin-right: 16px;
-    @include font(20px, 400);
+    cursor: pointer;
+    border: 2px solid $grey;
+    background-color: $snow-white;
+    @include font(20px, 700, $grey);
+
+    &:hover {
+      border-color: $dark-grey;
+      color: $dark-grey;
+    }
   }
 
   &__list {
@@ -115,5 +121,13 @@
 
   &__no-news {
     @include font(30px, 400, $grey);
+  }
+
+  @media only screen and (max-width: 960px) {
+    margin: 60px;
+
+    &__no-news {
+      font-size: 22px;
+    }
   }
 }
