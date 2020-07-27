@@ -42,11 +42,15 @@ exports.initFilesConfig = () => {
 
   filesFolder = path.join(__dirname, "/../data/files");
 
-  fs.mkdirSync(filesFolder);
+  if (!fs.existsSync(filesFolder)) {
+    fs.mkdirSync(filesFolder);
+  }
 
   filesConfig.forEach((element) => {
     const groupFolder = path.join(filesFolder, element.directoryName);
-    fs.mkdirSync(groupFolder);
+    if (!fs.existsSync(groupFolder)) {
+      fs.mkdirSync(groupFolder);
+    }
     element.fileNames = [];
   });
   this.updateFilesConfig(filesConfig);

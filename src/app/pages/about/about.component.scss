@@ -3,30 +3,29 @@
 
 .app-about {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
-  align-items: center;
 
   &__card {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    min-height: 40vh;
     background-image: url("/assets/images/solar-batteries.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 40vh;
+    background-attachment: fixed;
   }
 
   &__tile {
+    width: 480px;
+    margin: 16px;
+    padding: 8px;
+
     background-color: $dark-grey;
     opacity: 0.8;
-    color: white;
-    padding: 8px;
     border-radius: 4px;
-    width: 480px;
     text-align: center;
-    margin: 16px;
 
     &-header {
       @include font(36px, 700, $snow-white);
@@ -38,10 +37,10 @@
   }
 
   &__description {
-    padding: 60px 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 60px 0;
     min-height: 40vh;
 
     &-text {
@@ -50,181 +49,32 @@
     }
   }
 
-  &__rosnano {
-    display: flex;
-
-    &-wrapper {
-      background-color: $grey;
-      flex: 1 1 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      min-height: 40vh;
-    }
-
-    &-text {
-      width: 70%;
-      @include font(22px, 200, $snow-white);
-    }
-
-    &-image {
-      flex: 1 1 50%;
-      max-width: 100%;
-      min-width: 300px;
-    }
-  }
-
-  &__features {
-    display: flex;
-    min-height: 40vh;
-    margin: auto;
-    padding-bottom: 64px;
-
-    &-column {
-      display: flex;
-      flex-direction: column;
-      flex-basis: 33.3%;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &-row {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      position: relative;
-      height: 120px;
-      width: 100%;
-      color: $dark-grey;
-      @include font(18, 200);
-      text-align: center;
-      padding-bottom: 4px;
-      border-bottom: 1px solid $dark-grey;
-    }
-
-    &-column:first-child &-row {
-      &:nth-child(1):after {
-        content: "";
-        position: absolute;
-        transform: rotateZ(45deg);
-        right: -42px;
-        bottom: -18px;
-        width: 50px;
-        border-bottom: 1px solid $dark-grey;
-      }
-
-      &:nth-child(2):after {
-        content: "";
-        position: absolute;
-        right: -2vw;
-        bottom: -1px;
-        width: 2vw;
-        border-bottom: 1px solid $dark-grey;
-      }
-
-      &:nth-child(3):after {
-        content: "";
-        position: absolute;
-        transform: rotateZ(-45deg);
-        right: -42px;
-        bottom: 17px;
-        width: 50px;
-        border-bottom: 1px solid $dark-grey;
-      }
-    }
-
-    &-column:last-child &-row {
-      &:nth-child(1):after {
-        content: "";
-        position: absolute;
-        transform: rotateZ(-45deg);
-        left: -42px;
-        bottom: -18px;
-        width: 50px;
-        border-bottom: 1px solid $dark-grey;
-      }
-
-      &:nth-child(2):after {
-        content: "";
-        position: absolute;
-        left: -2vw;
-        bottom: -1px;
-        width: 2vw;
-        border-bottom: 1px solid $dark-grey;
-      }
-
-      &:nth-child(3):after {
-        content: "";
-        position: absolute;
-        transform: rotateZ(45deg);
-        left: -42px;
-        bottom: 17px;
-        width: 50px;
-        border-bottom: 1px solid $dark-grey;
-      }
-    }
-
-    &-icon {
-      margin-top: 92px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      & > svg {
-        width: 60%;
-      }
-    }
-  }
-
-  &__pros {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 120px;
-    background-color: $primary-orange;
-
-    &-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      min-width: 200px;
-      min-height: 40vh;
-      width: 15%;
-      padding: 32px;
-      flex-grow: 1;
-    }
-
-    &-icon {
-      margin-bottom: 16px;
-    }
-
-    &-title {
-      @include font(26px, 700, $snow-white);
-      margin-bottom: 8px;
-      text-align: center;
-    }
-
-    &-text {
-      @include font(18px, 400, $snow-white);
-      text-align: center;
-    }
-  }
-
   &__partners {
-    width: 100%;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
+    position: relative;
     min-height: 40vh;
-    padding: 32px 120px;
+    padding: 60px 120px 0 120px;
+    text-align: center;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      border-top: 1px solid $dark-grey;
+    }
 
     &-header {
-      margin: 40px 0;
-      text-align: center;
-      @include font(36px, 700);
+      @include font(42px, 400);
+    }
+
+    &-text {
+      margin-top: 30px;
+      width: 50%;
+      @include font(22px, 200);
     }
 
     &-list {
@@ -235,9 +85,7 @@
     }
 
     &-link {
-      overflow: hidden;
-      margin: auto;
-      padding: 0 16px;
+      margin: 30px;
       filter: grayscale(100%);
       transition: filter 0.3s ease;
 
@@ -276,12 +124,17 @@
       font-size: 20px;
     }
 
-    &__rosnano {
-      flex-direction: column;
-    }
+    &__partners {
+      padding: 60px 30px 0 30px;
 
-    &__pros {
-      padding: 0 30px;
+      &-text {
+        width: 80%;
+        font-size: 20px;
+      }
+
+      &-list {
+        flex-direction: column;
+      }
     }
   }
 }
