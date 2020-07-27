@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { News } from 'src/app/models/news.model';
 import { NewsService } from 'src/app/services/news.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { delay, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-news',
@@ -10,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['./news.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, OnDestroy {
     @HostBinding("class.app-news") true;
 
     _newsList: News[] = [];
@@ -18,6 +20,8 @@ export class NewsComponent implements OnInit {
     _logged: boolean = false;
     _error: string;
     _form: FormGroup;
+
+    private destroy$: Subject<boolean> = new Subject();
 
     constructor(
         private newsService: NewsService,
@@ -37,23 +41,31 @@ export class NewsComponent implements OnInit {
 
         this._loading = true;
 
-        this.newsService.loadNews().subscribe(
+        this.newsService.loadNews().pipe(
+            takeUntil(this.destroy$),
+            delay(3000),
+        ).subscribe(
             newsList => {
                 this._newsList = newsList;
-                this._loading = false;
-                this.cdr.detectChanges();
             },
             err => {
                 this._error = err;
+            },
+            () => {
                 this._loading = false;
                 this.cdr.detectChanges();
-            },
+            }
         );
 
         this._logged = this.authService.isLoggedIn();
     }
 
-    _postNews(formValue) {
+    ngOnDestroy(): void {
+        this.destroy$.next()
+        this.destroy$.complete();
+    }
+
+    _submit(formValue) {
         this._loading = true;
         const news: News = {
             title: {
@@ -67,7 +79,9 @@ export class NewsComponent implements OnInit {
             date: new Date().toISOString(),
         }
 
-        this.newsService.postNews(news).subscribe(
+        this.newsService.postNews(news).pipe(
+            takeUntil(this.destroy$)
+        ).subscribe(
             newsList => {
                 this._newsList = newsList;
             },
@@ -85,17 +99,19 @@ export class NewsComponent implements OnInit {
     _onDeleteNewsClick(date: string) {
         this._loading = true;
 
-        this.newsService.deleteNews(date).subscribe(
+        this.newsService.deleteNews(date).pipe(
+            takeUntil(this.destroy$),
+        ).subscribe(
             newsList => {
                 this._newsList = newsList;
-                this._loading = false;
-                this.cdr.detectChanges();
             },
             err => {
                 this._error = err;
+            },
+            () => {
                 this._loading = false;
                 this.cdr.detectChanges();
-            },
+            }
         );
     }
 

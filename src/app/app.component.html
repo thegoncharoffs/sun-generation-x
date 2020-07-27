@@ -62,12 +62,25 @@
 <router-outlet></router-outlet>
 
 <footer class="app-root__footer">
-  <span class="app-root__footer-text">
-    © 2020 СФО ООО <br />
-    «Специализированное финансовое общество <br />
-    Солнечная генерация Х»
-  </span>
+  <div class="app-root__footer-text">
+    <div class="app-root__footer-text-row">
+      © 2020 СФО ООО
+    </div>
+    <div class="app-root__footer-text-row">
+      «Специализированное финансовое общество
+    </div>
+    <div class="app-root__footer-text-row">
+      Солнечная генерация Х»
+      <svg-icon
+        src="./assets/icons/login.svg"
+        class="app-root__login-icon"
+        routerLink="/login"
+      ></svg-icon>
+    </div>
+  </div>
+
   <div class="app-root__footer-separator"></div>
+
   <div class="app-root__contact">
     <div class="app-root__contact-item">
       <svg-icon

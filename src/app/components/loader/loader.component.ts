@@ -1,0 +1,15 @@
+import { Component, HostBinding, ViewEncapsulation, Input } from '@angular/core';
+
+@Component({
+    selector: 'app-loader',
+    templateUrl: './loader.component.html',
+    styleUrls: ['./loader.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+})
+export class LoaderComponent {
+    @HostBinding("class.app-loader") true;
+
+    @HostBinding("class._visible")
+    @Input()
+    visible: boolean = false;
+}

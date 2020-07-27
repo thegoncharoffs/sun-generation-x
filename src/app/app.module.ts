@@ -23,6 +23,7 @@ import { NewsService } from './services/news.service';
 import { NewsComponent } from './pages/news/news.component';
 import { AboutComponent } from './pages/about/about.component';
 import { DictionaryTranslatePipe } from './pipes/dictionary-translate.pipe';
+import { LoaderComponent } from './components/loader/loader.component';
 
 const mapConfig: IConfig = {
     apiKey: 'API_KEY',
@@ -42,6 +43,7 @@ const mapConfig: IConfig = {
         DictionaryTranslatePipe,
         LoginComponent,
         NewsComponent,
+        LoaderComponent,
     ],
     imports: [
         BrowserModule,

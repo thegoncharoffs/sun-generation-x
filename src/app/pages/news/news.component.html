@@ -1,8 +1,8 @@
 <form 
-    *ngIf="_logged"
+    *ngIf="_logged && !_loading"
     class="app-news__form"
     [formGroup]="_form"
-    (ngSubmit)="_postNews(_form.value)"
+    (ngSubmit)="_submit(_form.value)"
 >
     <h1 class="app-news__title">{{"news.add-news" | translate}}</h1>
 
@@ -22,8 +22,16 @@
     </div>
 </form>
 
+<app-loader
+    [visible]="_loading"
+>
+</app-loader>
+
 <!-- News list -->
-<div class="app-news__list">
+<div 
+    *ngIf="!_loading"
+    class="app-news__list"
+>
     <ng-container *ngIf="_newsList?.length > 0; else emptyNewsTpl">
         <ng-container *ngFor="let news of _newsList">
             <div class="app-news__item">
