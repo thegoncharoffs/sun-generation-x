@@ -47,8 +47,10 @@
                         (click)="_onDownloadFileClick(fileName)"
                     ></svg-icon>
 
-                    <span class="app-documents__list-item-text"
+                    <span 
+                        class="app-documents__list-item-text"
                         [innerHTML]="fileName | mark: _searchValue"
+                        [title]="fileName"
                     >
                     </span>
 

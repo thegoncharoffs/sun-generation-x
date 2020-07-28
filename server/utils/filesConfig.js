@@ -24,34 +24,77 @@ exports.initFilesConfig = () => {
   filesConfig = [
     {
       title: {
-        en: "Documents 1",
-        ru: "Документы 1",
+        ru: "Внутренние Документы",
+        en: "Internal Documents",
       },
-      directoryName: "files1",
       fileNames: [],
     },
     {
       title: {
-        en: "Documents 2",
-        ru: "Документы 2",
+        ru: "Бухгалтерская Отчетность",
+        en: "Accounting Report",
       },
-      directoryName: "files2",
+      fileNames: [],
+    },
+    {
+      title: {
+        ru: "Эмиссионные Документы",
+        en: "Equity Instruments",
+      },
+      fileNames: [],
+    },
+    {
+      title: {
+        ru: "Отчет Расчетного Агента",
+        en: "Settlement Agent Report",
+      },
+      fileNames: [],
+    },
+    {
+      title: {
+        ru: "Отчет Эмитента Облигаций",
+        en: "Report of the Bond Issuer",
+      },
+      fileNames: [],
+    },
+    {
+      title: {
+        ru: "Отчет Сервисного Агента",
+        en: "Service Agent Report",
+      },
+      fileNames: [],
+    },
+    {
+      title: {
+        ru: "Сообщения Эмитента",
+        en: "Messages Of The Issuer",
+      },
+      fileNames: [],
+    },
+    {
+      title: {
+        ru: "Внешняя Оценка и Отчет",
+        en: "External Evaluation and Report",
+      },
       fileNames: [],
     },
   ];
 
-  filesFolder = path.join(__dirname, "/../data/files");
+  filesFolder = path.join(__dirname, "/../data/files/files");
 
   if (!fs.existsSync(filesFolder)) {
     fs.mkdirSync(filesFolder);
   }
 
-  filesConfig.forEach((element) => {
-    const groupFolder = path.join(filesFolder, element.directoryName);
+  filesConfig.forEach((element, id) => {
+    const groupFolder = path.join(filesFolder + id);
+
     if (!fs.existsSync(groupFolder)) {
       fs.mkdirSync(groupFolder);
     }
+
     element.fileNames = [];
   });
+
   this.updateFilesConfig(filesConfig);
 };

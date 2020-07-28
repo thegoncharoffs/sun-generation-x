@@ -26,7 +26,7 @@
   &__text-field,
   &__memo-field {
     margin-bottom: 16px;
-    height: 32px;
+    height: 40px;
     min-width: 100%;
     max-width: 100%;
     border: 2px solid $grey;
@@ -124,7 +124,7 @@
   }
 
   @media only screen and (max-width: 960px) {
-    margin: 60px;
+    margin: 20px;
 
     &__no-news {
       font-size: 22px;

@@ -1,9 +1,51 @@
 {
+  "address": "Russia, Moscoe, addres st., 123456",
   "pages": {
-    "main": "About us",
+    "main": "About Us",
     "news": "News",
     "services": "Services",
     "documents": "Documents",
     "contacts": "Contacts"
+  },
+  "login": {
+    "login": "Login",
+    "password": "Password",
+    "error": "Wrong cridentials",
+    "submit": "Submit",
+    "login-needed": "Login needed"
+  },
+  "about": {
+    "tile": {
+      "header": "We're leaders",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpa"
+    },
+    "description": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpaolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpa Lorem ipsum dolor sit amet, conse minus mollitia necessitatibus officia porro quam quas quidem repellat sequi, similique sint tenetur ullam, voluptatem voluptatum? Architecto do",
+    "partners": {
+      "header": "Our Partners",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpa"
+    }
+  },
+  "documents": {
+    "search": "Search Documents",
+    "no-results": "No results",
+    "upload-documents": "Load Documents",
+    "logout": "Exit"
+  },
+  "news": {
+    "add-news": "Add News",
+    "no-news": "No News",
+    "save": "Save",
+    "exit": "Exit"
+  },
+  "contacts": {
+    "address-title": "Address",
+    "address": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit",
+    "phones-title": "Phone",
+    "mail-title": "Email",
+    "directions": "Location Map",
+    "by-car": "By Car",
+    "by-car-route": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpaolor sit amet, co, conse minus mollitia necessitatibus officia porro quam quas quidem repellat sequi, similique sint tenetur ullam, voluptatem voluptatum? Architecto do",
+    "by-public-transport": "By Public Transport",
+    "by-public-transport-route": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpaolor sit amet, co, conse minus mollitia necessitatibus officia porro quam quas quidem repellat sequi, similique sint tenetur ullam, voluptatem voluptatum? Architecto do"
   }
 }

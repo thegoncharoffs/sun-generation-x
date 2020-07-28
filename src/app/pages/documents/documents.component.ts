@@ -37,7 +37,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
         this.fileService.loadFiles().pipe(
             takeUntil(this.destroy$),
-            delay(3000)
+            // delay(3000)
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;
@@ -46,7 +46,6 @@ export class DocumentsComponent implements OnInit, OnDestroy {
                 this._error = err;
             },
             () => {
-                console.log('here')
                 this._loading = false;
                 this.cdr.detectChanges();
             }
@@ -63,7 +62,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
     _onUploadFileChange(event) {
         this._loading = true;
 
-        this.fileService.uploadFiles(event.target.files, this._documentGroups[this._selectedGroupIndex].directoryName).pipe(
+        this.fileService.uploadFiles(event.target.files, this._selectedGroupIndex.toString()).pipe(
             takeUntil(this.destroy$),
         ).subscribe(
             documentGroups => {
@@ -90,7 +89,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
     _onDeleteFileClick(fileName: string) {
         this._loading = true;
 
-        this.fileService.deleteFile(fileName, this._documentGroups[this._selectedGroupIndex].directoryName).pipe(
+        this.fileService.deleteFile(fileName, this._selectedGroupIndex.toString()).pipe(
             takeUntil(this.destroy$),
         ).subscribe(
             documentGroups => {

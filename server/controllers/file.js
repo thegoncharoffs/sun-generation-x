@@ -11,23 +11,24 @@ function getFiles(req, res) {
 }
 
 function uploadFiles(req, res) {
-  const directoryName = req.body.directoryName;
+  const directoryId = req.body.directoryId;
   const files = req.files;
   const filesConfig = readFilesConfig();
 
-  if (!files || Object.keys(files).length === 0 || !directoryName) {
+  if (!files || Object.keys(files).length === 0) {
     return res.status(400).send("No files were uploaded.");
   }
 
-  const dirConfig = filesConfig.find(
-    (dirConfig) => dirConfig.directoryName === directoryName
-  );
-
-  if (!dirConfig) {
-    return res.status(400).send("No such directory");
+  if (directoryId === undefined) {
+    return res.status(400).send("directoryId is not specified");
   }
 
-  const directoryPath = path.join(__dirname, "../data/files", directoryName);
+  const dirConfig = filesConfig[directoryId];
+
+  const directoryPath = path.join(
+    __dirname,
+    "../data/files/files" + directoryId
+  );
 
   // Combine async files move promises
   const promiseArr = [];
@@ -52,28 +53,25 @@ function uploadFiles(req, res) {
 }
 
 function deleteFile(req, res) {
-  const directoryName = req.query.directoryName;
+  const directoryId = req.query.directoryId;
   const fileName = req.query.fileName;
 
   const filesConfig = readFilesConfig();
 
-  if (!directoryName) {
-    return res.status(400).send("DirectoryName is not specified");
+  if (!directoryId === undefined) {
+    return res.status(400).send("directoryId is not specified");
   }
 
   if (!fileName) {
-    return res.status(400).send("FileName is not specified");
+    return res.status(400).send("fileName is not specified");
   }
 
-  const dirConfig = filesConfig.find(
-    (dirConfig) => dirConfig.directoryName === directoryName
+  const dirConfig = filesConfig[directoryId];
+
+  const directoryPath = path.join(
+    __dirname,
+    "../data/files/files" + directoryId
   );
-
-  if (!dirConfig) {
-    return res.status(400).send("No such directory");
-  }
-
-  const directoryPath = path.join(__dirname, "../data/files", directoryName);
 
   // Delete file async
   fs.unlink(path.join(directoryPath, fileName), (err) => {
@@ -90,9 +88,11 @@ function deleteFile(req, res) {
 }
 
 function downloadFile(req, res) {
-  const directoryName = req.query.directoryName;
+  const directoryId = req.query.directoryId;
   const fileName = req.query.fileName;
-  res.download(path.join(__dirname, "../data/files", directoryName, fileName));
+  res.download(
+    path.join(__dirname, "../data/files/files" + directoryId, fileName)
+  );
 }
 
 router
