@@ -80,7 +80,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
     _onDownloadFileClick(fileName: string) {
         const link = document.createElement('a');
-        link.href = BASE_URL + `download?fileName=${fileName}&directoryName=${this._documentGroups[this._selectedGroupIndex].directoryName}`;
+        link.href = BASE_URL + `download?fileName=${fileName}&directoryId=${this._selectedGroupIndex}`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

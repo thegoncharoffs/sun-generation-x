@@ -14,34 +14,22 @@
     "submit": "Отправить",
     "login-needed": "Требуется Вход"
   },
-  "main": {
+  "about": {
     "tile": {
       "header": "Мы - лидеры",
       "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpa"
     },
     "description": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpaolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpa Lorem ipsum dolor sit amet, conse minus mollitia necessitatibus officia porro quam quas quidem repellat sequi, similique sint tenetur ullam, voluptatem voluptatum? Architecto do",
-    "rosnano": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpaolor sit amet, co, conse minus mollitia necessitatibus officia porro quam quas quidem repellat sequi, similique sint tenetur ullam, voluptatem voluptatum? Architecto do",
-    "pros": {
-      "expertise": "Экспертность",
-      "expertise-text": "Наша команда состоит только из высококвалифицированных сотрудников",
-      "result": "Результат",
-      "result-text": "Мы доводим свои проекты до конца",
-      "revenue": "Прибыль",
-      "revenue-text": "Наши клиенты всегда получают прибыль от инноваций",
-      "reputation": "Репутация",
-      "reputation-text": "Мы работаем на рынке уже 13 лет и зарекомендовали себя по 15 проектам"
-    },
-    "partners": "Наши Партнеры"
+    "partners": {
+      "header": "Наши Партнеры",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpa"
+    }
   },
   "documents": {
     "search": "Поиск по Документам",
-    "no-results": "Нет результатов",
+    "no-results": "Нет Результатов",
     "upload-documents": "Загрузить Документы",
-    "logout": "Выйти",
-    "types": {
-      "type1": "Тип 1",
-      "type2": "Тип 2"
-    }
+    "logout": "Выйти"
   },
   "news": {
     "add-news": "Добавить новость",
@@ -54,7 +42,7 @@
     "address": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit",
     "phones-title": "Телефоны",
     "mail-title": "Почта",
-    "directions": "Схема проезда",
+    "directions": "Схема Проезда",
     "by-car": "На Машине",
     "by-car-route": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis impedit quia repellat sed! Ab amet, aperiam culpaolor sit amet, co, conse minus mollitia necessitatibus officia porro quam quas quidem repellat sequi, similique sint tenetur ullam, voluptatem voluptatum? Architecto do",
     "by-public-transport": "На Общественном Транспорте",
