@@ -4,6 +4,7 @@
 .app-documents {
   display: flex;
   justify-content: center;
+  height: 100%;
   padding: 30px 120px;
 
   .highlighted {
@@ -77,7 +78,6 @@
     flex-direction: column;
     flex-grow: 1;
     padding: 16px 120px;
-    cursor: pointer;
 
     &-item {
       display: flex;
@@ -112,6 +112,7 @@
         display: inline-flex;
         align-items: center;
         width: 100%;
+        cursor: pointer;
       }
 
       &-link:hover & {
