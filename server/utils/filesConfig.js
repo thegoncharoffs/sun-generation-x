@@ -80,14 +80,14 @@ exports.initFilesConfig = () => {
     },
   ];
 
-  filesFolder = path.join(__dirname, "/../data/files/files");
+  filesFolder = path.join(__dirname, "/../data/files");
 
   if (!fs.existsSync(filesFolder)) {
     fs.mkdirSync(filesFolder);
   }
 
   filesConfig.forEach((element, id) => {
-    const groupFolder = path.join(filesFolder + id);
+    const groupFolder = path.join(filesFolder, "files" + id);
 
     if (!fs.existsSync(groupFolder)) {
       fs.mkdirSync(groupFolder);
