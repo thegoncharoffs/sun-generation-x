@@ -25,6 +25,7 @@ const app = express();
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "/data/files")));
 
 // Init middlewares
 app.use(cors({ origin: "*" }));

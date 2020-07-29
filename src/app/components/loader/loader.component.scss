@@ -3,46 +3,26 @@
 
 .app-loader {
   display: none;
-  width: 100px;
-  height: 100px;
   margin: 100px;
-  background-color: $primary-orange;
-  border-radius: 50%;
-  box-shadow: 0 0 0 20px lighten($color: $primary-orange, $amount: 10),
-    0 0 0 40px lighten($color: $primary-orange, $amount: 20),
-    0 0 0 60px lighten($color: $primary-orange, $amount: 40),
-    0 0 0 80px lighten($color: $primary-orange, $amount: 50),
-    0 0 0 100px lighten($color: $primary-orange, $amount: 60),
-    0 40px 100px lighten($color: $primary-orange, $amount: 70);
+  width: 200px;
+  height: 200px;
+  animation: rotation 2s infinite linear;
 
-  animation: sunrise 2s infinite linear forwards, rays 2s 2s infinite linear;
+  &__icon > svg {
+    width: 200px;
+    height: 200px;
+  }
 
   &._visible {
-    display: block;
+    display: inline-block;
   }
 }
 
-@keyframes sunrise {
-  0% {
-    box-shadow: none;
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
   }
-}
-
-@keyframes rays {
-  0% {
-    box-shadow: 0 0 0 0 lighten($color: $primary-orange, $amount: 10),
-      0 0 0 20px lighten($color: $primary-orange, $amount: 20),
-      0 0 0 40px lighten($color: $primary-orange, $amount: 30),
-      0 0 0 60px lighten($color: $primary-orange, $amount: 40),
-      0 0 0 80px lighten($color: $primary-orange, $amount: 50),
-      0 0 40px 100px lighten($color: $primary-orange, $amount: 60);
-  }
-  100% {
-    box-shadow: 0 0 0 20px lighten($color: $primary-orange, $amount: 10),
-      0 0 0 40px lighten($color: $primary-orange, $amount: 20),
-      0 0 0 60px lighten($color: $primary-orange, $amount: 30),
-      0 0 0 80px lighten($color: $primary-orange, $amount: 40),
-      0 0 0 100px lighten($color: $primary-orange, $amount: 50),
-      0 0 40px 100px lighten($color: $primary-orange, $amount: 60);
+  to {
+    transform: rotate(359deg);
   }
 }

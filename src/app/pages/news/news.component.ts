@@ -3,7 +3,7 @@ import { AuthService } from "../../services/auth.service";
 import { News } from 'src/app/models/news.model';
 import { NewsService } from 'src/app/services/news.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { takeUntil } from 'rxjs/operators';
+import { delay, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -44,6 +44,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
         this.newsService.loadNews().pipe(
             takeUntil(this.destroy$),
+            delay(500),
         ).subscribe(
             newsList => {
                 this._newsList = newsList;
@@ -80,7 +81,8 @@ export class NewsComponent implements OnInit, OnDestroy {
         }
 
         this.newsService.postNews(news).pipe(
-            takeUntil(this.destroy$)
+            takeUntil(this.destroy$),
+            delay(500),
         ).subscribe(
             newsList => {
                 this._newsList = newsList;
@@ -101,6 +103,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
         this.newsService.deleteNews(date).pipe(
             takeUntil(this.destroy$),
+            delay(500),
         ).subscribe(
             newsList => {
                 this._newsList = newsList;

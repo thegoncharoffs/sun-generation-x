@@ -6,6 +6,7 @@ const router = express.Router();
 
 const USERS = [
   { id: 1, login: "boris", password: bcrypt.hashSync("boris", 8) },
+  { id: 2, login: "sungenlogin", password: bcrypt.hashSync("sungenpassword", 8) },
 ];
 
 function login(req, res) {

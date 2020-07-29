@@ -1,5 +1,6 @@
 {
   "address": "Russia, Moscoe, addres st., 123456",
+  "title": "SUN GENERATION X",
   "pages": {
     "main": "About Us",
     "news": "News",
@@ -40,7 +41,7 @@
   "contacts": {
     "address-title": "Address",
     "address": "Lorem ipsum dLorem ipsum dolor sit amet, consectetur adipisicing elit",
-    "phones-title": "Phone",
+    "phones-title": "Phones",
     "mail-title": "Email",
     "directions": "Location Map",
     "by-car": "By Car",

@@ -37,7 +37,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
         this.fileService.loadFiles().pipe(
             takeUntil(this.destroy$),
-            // delay(3000)
+            delay(500),
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;
@@ -64,6 +64,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
         this.fileService.uploadFiles(event.target.files, this._selectedGroupIndex.toString()).pipe(
             takeUntil(this.destroy$),
+            delay(500),
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;
@@ -80,7 +81,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
     _onDownloadFileClick(fileName: string) {
         const link = document.createElement('a');
-        link.href = BASE_URL + `download?fileName=${fileName}&directoryId=${this._selectedGroupIndex}`;
+        link.href = BASE_URL + `files?fileName=${fileName}&directoryId=${this._selectedGroupIndex}`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -91,6 +92,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
         this.fileService.deleteFile(fileName, this._selectedGroupIndex.toString()).pipe(
             takeUntil(this.destroy$),
+            delay(500),
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;

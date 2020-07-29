@@ -29,13 +29,4 @@ export class FileService {
 
         return this.http.delete(BASE_URL + "files", { params });
     }
-
-    downloadFile(fileName: string, directoryId: string): Observable<any> {
-        const params = {
-            fileName,
-            directoryId,
-        };
-
-        return this.http.get(BASE_URL + "files", { params });
-    }
 }
