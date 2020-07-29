@@ -27,9 +27,9 @@
     }
   },
   "documents": {
-    "search": "Поиск по Документам",
-    "no-results": "Нет Результатов",
-    "upload-documents": "Загрузить Документы",
+    "search": "Поиск по документам",
+    "no-results": "Нет результатов",
+    "upload-documents": "Загрузить документы",
     "logout": "Выйти"
   },
   "news": {

@@ -27,10 +27,10 @@
     }
   },
   "documents": {
-    "search": "Search Documents",
+    "search": "Search documents",
     "no-results": "No results",
-    "upload-documents": "Load Documents",
-    "logout": "Exit"
+    "upload-documents": "Load documents",
+    "logout": "Logout"
   },
   "news": {
     "add-news": "Add News",
