@@ -4,6 +4,7 @@
 .app-documents {
   display: flex;
   justify-content: center;
+  flex-grow: 1;
   padding: 30px 120px;
 
   .highlighted {
@@ -24,7 +25,8 @@
       height: 52px;
       background-color: $dark-grey;
       @include font(18px, 400, $snow-white);
-      transition: transform 0.2s ease, background-color 0.2s ease, border 0.2s ease, color 0.2s ease;
+      transition: transform 0.2s ease, background-color 0.2s ease,
+        border 0.2s ease, color 0.2s ease;
       cursor: pointer;
       margin-bottom: 10px;
       padding-left: 16px;

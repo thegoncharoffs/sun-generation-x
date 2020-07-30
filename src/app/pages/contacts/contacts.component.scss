@@ -3,6 +3,7 @@
 
 .app-contacts {
   display: block;
+  flex-grow: 1;
 
   &__info {
     display: flex;
