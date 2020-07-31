@@ -66,7 +66,7 @@
     background-image: url("/assets/images/documents.png");
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: 80%;
+    background-position-y: 60%;
     background-size: cover;
   }
 
@@ -154,6 +154,11 @@
     &__documents {
       width: 100%;
       flex-basis: 100%;
+    }
+
+    &__header {
+      background-position-y: bottom;
+      background-size: 120%;
     }
 
     &__navigation {
