@@ -119,7 +119,7 @@
   }
 
   &__no-news {
-    @include font(30px, 400, $grey);
+    @include font(20px, 400, $grey);
   }
 
   @media only screen and (max-width: 960px) {

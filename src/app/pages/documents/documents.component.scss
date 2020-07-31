@@ -141,7 +141,7 @@
     }
 
     &-empty {
-      @include font(30px, 400, $grey);
+      @include font(20px, 400, $grey);
       text-align: center;
     }
   }
