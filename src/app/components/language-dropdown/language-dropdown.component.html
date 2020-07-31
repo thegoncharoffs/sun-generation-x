@@ -2,22 +2,23 @@
     class="app-language-dropdown__icons-wrapper"
     (click)="_visible = !_visible"
 >
-    <div
-        class="app-language-dropdown__flag"
+    <ng-container
         [ngSwitch]="_language"
     >
         <ng-template [ngSwitchCase]="'ru'">
             <svg-icon
+                class="app-language-dropdown__flag"
                 src="./assets/icons/flag-ru.svg"
             ></svg-icon>
         </ng-template>
 
         <ng-template [ngSwitchCase]="'en'">
             <svg-icon
+                class="app-language-dropdown__flag"
                 src="./assets/icons/flag-en.svg"
             ></svg-icon>
         </ng-template>
-    </div>
+    </ng-container>
 
     <svg
         class="app-language-dropdown__arrow"
