@@ -7,9 +7,10 @@
   justify-content: center;
   flex-grow: 1;
 
-  background-image: url("/assets/images/solar-batteries.jpg");
+  background-image: url("/assets/images/solar-batteries.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
 
   &__form {
     display: flex;

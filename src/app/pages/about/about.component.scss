@@ -12,9 +12,10 @@
     justify-content: center;
     width: 100%;
     min-height: 40vh;
-    background-image: url("/assets/images/solar-batteries.gif");
+    background-image: url("/assets/images/solar-batteries.png");
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
   }
 
   &__tile {

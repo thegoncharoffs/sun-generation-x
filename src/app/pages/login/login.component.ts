@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         }).subscribe(
             data => {
                 this.tokenStorage.saveToken(data.accessToken);
-                this.router.navigate(['/documents']);
+                this.router.navigate(['/about']);
             },
             error => {
                 this._error = error.error.message;
