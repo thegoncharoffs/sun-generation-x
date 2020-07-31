@@ -11,7 +11,6 @@ import { delay, takeUntil } from 'rxjs/operators';
     templateUrl: './documents.component.html',
     styleUrls: ['./documents.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentsComponent implements OnInit, OnDestroy {
     @HostBinding("class.app-documents") true;
@@ -41,14 +40,14 @@ export class DocumentsComponent implements OnInit, OnDestroy {
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;
+                this._loading = false;
+                this.cdr.detectChanges();
             },
             err => {
                 this._error = err;
-            },
-            () => {
                 this._loading = false;
                 this.cdr.detectChanges();
-            }
+            },
         );
 
         this._logged = this.authService.isLoggedIn();
@@ -68,14 +67,14 @@ export class DocumentsComponent implements OnInit, OnDestroy {
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;
+                this._loading = false;
+                this.cdr.detectChanges();
             },
             err => {
                 this._error = err;
-            },
-            () => {
                 this._loading = false;
                 this.cdr.detectChanges();
-            }
+            },
         );
     }
 
@@ -96,14 +95,14 @@ export class DocumentsComponent implements OnInit, OnDestroy {
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;
+                this._loading = false;
+                this.cdr.detectChanges();
             },
             err => {
                 this._error = err;
-            },
-            () => {
                 this._loading = false;
                 this.cdr.detectChanges();
-            }
+            },
         );
     }
 

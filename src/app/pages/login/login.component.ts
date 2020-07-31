@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
         private authService: AuthService,
         private tokenStorage: TokenStorageService,
         private router: Router,
+        private cdr: ChangeDetectorRef,
     ) {
     }
 
@@ -44,10 +45,12 @@ export class LoginComponent implements OnInit {
             data => {
                 this.tokenStorage.saveToken(data.accessToken);
                 this.router.navigate(['/about']);
+                this.cdr.detectChanges();
             },
             error => {
                 this._error = error.error.message;
                 this._form.reset();
+                this.cdr.detectChanges();
             }
         );
     }

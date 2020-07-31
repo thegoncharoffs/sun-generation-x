@@ -1,7 +1,7 @@
 @mixin font-face($file-name, $font-family, $font-weight: 400, $font-style: normal) {
   @font-face {
-    font-family: "#{$font-family}";
-    src: url("./assets/fonts/#{$file-name}.woff") format('woff');
+    font-family: $font-family;
+    src: url("./assets/fonts/#{$file-name}.woff") format("woff");
     font-weight: $font-weight;
     font-style: $font-style;
     font-display: swap;

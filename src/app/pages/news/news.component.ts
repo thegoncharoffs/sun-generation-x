@@ -11,7 +11,6 @@ import { Subject } from 'rxjs';
     templateUrl: './news.component.html',
     styleUrls: ['./news.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsComponent implements OnInit, OnDestroy {
     @HostBinding("class.app-news") true;
@@ -48,14 +47,14 @@ export class NewsComponent implements OnInit, OnDestroy {
         ).subscribe(
             newsList => {
                 this._newsList = newsList;
+                this._loading = false;
+                this.cdr.detectChanges();
             },
             err => {
                 this._error = err;
-            },
-            () => {
                 this._loading = false;
                 this.cdr.detectChanges();
-            }
+            },
         );
 
         this._logged = this.authService.isLoggedIn();
@@ -86,15 +85,14 @@ export class NewsComponent implements OnInit, OnDestroy {
         ).subscribe(
             newsList => {
                 this._newsList = newsList;
+                this._loading = false;
+                this.cdr.detectChanges();
             },
             err => {
                 this._error = err;
-            },
-            () => {
                 this._loading = false;
-                this._form.reset();
                 this.cdr.detectChanges();
-            }
+            },
         );
     }
 
@@ -107,14 +105,14 @@ export class NewsComponent implements OnInit, OnDestroy {
         ).subscribe(
             newsList => {
                 this._newsList = newsList;
+                this._loading = false;
+                this.cdr.detectChanges();
             },
             err => {
                 this._error = err;
-            },
-            () => {
                 this._loading = false;
                 this.cdr.detectChanges();
-            }
+            },
         );
     }
 
