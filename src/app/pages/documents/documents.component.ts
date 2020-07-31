@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { DocumentGroup } from 'src/app/models/documents-group.model';
 import { BASE_URL } from "../../app.config";
 import { FileService } from 'src/app/services/file.service';
 import { Subject } from 'rxjs';
-import { delay, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-documents',
@@ -36,7 +36,6 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
         this.fileService.loadFiles().pipe(
             takeUntil(this.destroy$),
-            delay(500),
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;
@@ -63,7 +62,6 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
         this.fileService.uploadFiles(event.target.files, this._selectedGroupIndex.toString()).pipe(
             takeUntil(this.destroy$),
-            delay(500),
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;
@@ -91,7 +89,6 @@ export class DocumentsComponent implements OnInit, OnDestroy {
 
         this.fileService.deleteFile(fileName, this._selectedGroupIndex.toString()).pipe(
             takeUntil(this.destroy$),
-            delay(500),
         ).subscribe(
             documentGroups => {
                 this._documentGroups = documentGroups;

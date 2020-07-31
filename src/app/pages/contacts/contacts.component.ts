@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-contacts',
@@ -7,12 +7,6 @@ import { ChangeDetectionStrategy, Component, HostBinding, OnInit, ViewEncapsulat
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactsComponent implements OnInit {
+export class ContactsComponent {
   @HostBinding("class.app-contacts") true;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
