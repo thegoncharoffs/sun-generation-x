@@ -94,10 +94,10 @@ export class NewsComponent implements OnInit, OnDestroy {
         );
     }
 
-    _onDeleteNewsClick(date: string) {
+    _onDeleteNewsClick(id: string) {
         this._loading = true;
 
-        this.newsService.deleteNews(date).pipe(
+        this.newsService.deleteNews(id).pipe(
             takeUntil(this.destroy$),
         ).subscribe(
             newsList => {

@@ -38,12 +38,11 @@
             <ng-container *ngIf="_documentGroups">
                 <li
                     class="app-documents__list-item"
-                    *ngFor="let fileName of (_documentGroups[_selectedGroupIndex].fileNames | filter : _searchValue)"
-
+                    *ngFor="let file of (_documentGroups[_selectedGroupIndex].files | filter : _searchValue)"
                 >
                     <div
                         class="app-documents__list-item-link"
-                        (click)="_onDownloadFileClick(fileName)"
+                        (click)="_onDownloadFileClick(file.id)"
                     >
                         <svg-icon
                             src="./assets/icons/download.svg"
@@ -52,8 +51,8 @@
 
                         <span 
                             class="app-documents__list-item-text"
-                            [innerHTML]="fileName | mark: _searchValue"
-                            [title]="fileName"
+                            [innerHTML]="file.name | mark: _searchValue"
+                            [title]="file.name"
                         >
                         </span>
                     </div>
@@ -63,7 +62,7 @@
                         src="./assets/icons/delete.svg"
                         class="app-documents__list-item-icon"
                         *ngIf="_logged"
-                        (click)="_onDeleteFileClick(fileName)"
+                        (click)="_onDeleteFileClick(file.id)"
                     ></svg-icon>
                 </li>
 
@@ -92,7 +91,7 @@
 
                 <div
                     *ngIf="
-                        (_documentGroups[_selectedGroupIndex].fileNames | filter: _searchValue).length === 0 &&
+                        (_documentGroups[_selectedGroupIndex].files | filter: _searchValue).length === 0 &&
                         !_logged
                     "
                     class="app-documents__list-empty"

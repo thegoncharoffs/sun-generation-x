@@ -11,20 +11,20 @@ export class FileService {
         return this.http.get(BASE_URL + "files/all");
     }
 
-    uploadFiles(files: File[], directoryId: string): Observable<any> {
+    uploadFiles(files: File[], groupId: string): Observable<any> {
         const body = new FormData();
         for (let i = 0; i < files.length; i++) {
             body.append("file" + i, files[i]);
         }
-        body.append("directoryId", directoryId);
+        body.append("groupId", groupId);
 
         return this.http.post(BASE_URL + "files", body);
     }
 
-    deleteFile(fileName: string, directoryId: string): Observable<any> {
+    deleteFile(groupId: string, fileId: string): Observable<any> {
         const params = {
-            fileName,
-            directoryId,
+            groupId,
+            fileId,
         };
 
         return this.http.delete(BASE_URL + "files", { params });

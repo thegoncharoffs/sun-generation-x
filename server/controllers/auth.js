@@ -1,47 +1,37 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+const User = require("../models/User");
 
 const router = express.Router();
 
-const USERS = [
-  { id: 1, login: "boris", password: bcrypt.hashSync("boris", 8) },
-  { id: 2, login: "sungenlogin", password: bcrypt.hashSync("sungenpassword", 8) },
-];
+const login = async (req, res) => {
+  const { login, password } = req.body;
 
-function login(req, res) {
-  // Search for user in list
-  const foundUser = USERS.find((user) => user.login === req.body.login);
-
-  if (!foundUser) {
-    return res.status(404).send({ message: "User Not found." });
+  if (!login || !password) {
+    return res.status(403).send({ message: "Please provide cridentials" });
   }
 
-  // Comparing passwords
-  const passwordIsValid = bcrypt.compareSync(
-    req.body.password,
-    foundUser.password
-  );
+  // Finding user
+  const user = await User.findOne({ login }).select("+password");
 
-  if (!passwordIsValid) {
-    return res.status(401).send({
-      accessToken: null,
-      message: "Invalid Password!",
-    });
+  if (!user) {
+    return res.status(401).send({ message: "Wrong login" });
   }
 
-  // Generating new token by secret word sync
-  const token = jwt.sign({ id: foundUser.id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+  // Check if password matches
+  const isMatch = await user.matchPassword(password);
 
-  // Send user
+  if (!isMatch) {
+    return res.status(401).send({ message: "Wrong password" });
+  }
+
+  // Create token
+  const token = user.getSignedJwtToken();
+
+  // Send token
   res.status(200).send({
-    id: foundUser.id,
-    login: foundUser.login,
     accessToken: token,
   });
-}
+};
 
 router.post("/login", login);
 

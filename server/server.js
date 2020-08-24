@@ -3,29 +3,26 @@ const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 const path = require("path");
+const colors = require("colors");
+
+const connectDB = require("./config/db");
 
 // Load env variables
 dotenv.config({ path: path.join(__dirname, "config/config.env") });
+
+// Connect to database
+connectDB();
 
 // Controllers
 const auth = require("./controllers/auth");
 const file = require("./controllers/file");
 const news = require("./controllers/news");
 
-// Utils
-const { initFilesConfig } = require("./utils/filesConfig");
-const { initNewsConfig } = require("./utils/newsConfig");
-
-// Init news and files configs
-initFilesConfig();
-initNewsConfig();
-
 // Init app
 const app = express();
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, "../public")));
-app.use(express.static(path.join(__dirname, "/data/files")));
 
 // Init middlewares
 app.use(cors({ origin: "*" }));

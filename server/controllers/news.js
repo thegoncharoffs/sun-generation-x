@@ -1,42 +1,39 @@
 const express = require("express");
-const { readNewsConfig, updateNewsConfig } = require("../utils/newsConfig");
+
 const verifyToken = require("../middlewares/verifyToken");
+const News = require("../models/News");
 
 const router = express.Router();
 
-function getNews(req, res) {
-  res.status(200).send(readNewsConfig());
-}
+const getNews = async (req, res) => {
+  res.status(200).send((await News.find({})).reverse());
+};
 
-function updateNews(req, res) {
-  const newsConfig = readNewsConfig();
+const addNews = async (req, res) => {
+  const news = await News.create(req.body);
 
-  if (!newsConfig) {
-    newsConfig = [];
+  if (!news) {
+    res.status(500).send({ message: "Can't update news" });
   }
 
-  newsConfig.unshift(req.body);
-  updateNewsConfig(newsConfig);
+  res.status(200).send((await News.find({})).reverse());
+};
 
-  res.status(200).send(newsConfig);
-}
+const deleteNews = async (req, res) => {
+  const news = await News.findById(req.query.id);
 
-function deleteNews(req, res) {
-  let newsConfig = readNewsConfig();
-
-  if (!newsConfig) {
-    res.status(500).send("No news on the server");
+  if (!news) {
+    res.status(500).send({ message: "News with this id is not found" });
   }
 
-  newsConfig = newsConfig.filter((news) => news.date !== req.query.date);
-  updateNewsConfig(newsConfig);
+  news.remove();
 
-  res.status(200).send(newsConfig);
-}
+  res.status(200).send((await News.find({})).reverse());
+};
 
 router
   .get("", getNews)
-  .post("", verifyToken, updateNews)
+  .post("", verifyToken, addNews)
   .delete("", verifyToken, deleteNews);
 
 module.exports = router;

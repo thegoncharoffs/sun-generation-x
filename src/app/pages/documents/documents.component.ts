@@ -60,7 +60,10 @@ export class DocumentsComponent implements OnInit, OnDestroy {
     _onUploadFileChange(event) {
         this._loading = true;
 
-        this.fileService.uploadFiles(event.target.files, this._selectedGroupIndex.toString()).pipe(
+        this.fileService.uploadFiles(
+            event.target.files,
+            this._documentGroups[this._selectedGroupIndex]._id
+        ).pipe(
             takeUntil(this.destroy$),
         ).subscribe(
             documentGroups => {
@@ -76,18 +79,21 @@ export class DocumentsComponent implements OnInit, OnDestroy {
         );
     }
 
-    _onDownloadFileClick(fileName: string) {
+    _onDownloadFileClick(fileId: string) {
         const link = document.createElement('a');
-        link.href = BASE_URL + `files?fileName=${fileName}&directoryId=${this._selectedGroupIndex}`;
+        link.href = BASE_URL + `files?fileId=${fileId}`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     }
 
-    _onDeleteFileClick(fileName: string) {
+    _onDeleteFileClick(fileId: string) {
         this._loading = true;
 
-        this.fileService.deleteFile(fileName, this._selectedGroupIndex.toString()).pipe(
+        this.fileService.deleteFile(
+            this._documentGroups[this._selectedGroupIndex]._id,
+            fileId
+        ).pipe(
             takeUntil(this.destroy$),
         ).subscribe(
             documentGroups => {

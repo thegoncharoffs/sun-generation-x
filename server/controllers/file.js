@@ -1,99 +1,131 @@
 const express = require("express");
-const path = require("path");
-const fs = require("fs");
-const { readFilesConfig, updateFilesConfig } = require("../utils/filesConfig");
+const mongoose = require("mongoose");
+const gridfs = require("mongoose-gridfs");
+const streamBuffers = require("stream-buffers");
+
 const verifyToken = require("../middlewares/verifyToken");
+const Document = require("../models/Document");
 
 const router = express.Router();
 
-function getFiles(req, res) {
-  res.status(200).send(readFilesConfig());
-}
+// Container for files
+let Files;
+mongoose.connection.on("connected", () => {
+  Files = gridfs.createModel({
+    modelName: "Files",
+    connection: mongoose.connection,
+  });
+});
 
-function uploadFiles(req, res) {
-  const directoryId = req.body.directoryId;
+const getFiles = async (req, res) => {
+  res.status(200).send(await Document.find({}));
+};
+
+const uploadFiles = async (req, res) => {
+  const groupId = req.body.groupId;
   const files = req.files;
-  const filesConfig = readFilesConfig();
+
+  if (!groupId) {
+    return res.status(400).send("No froup id provided");
+  }
 
   if (!files || Object.keys(files).length === 0) {
-    return res.status(400).send("No files were uploaded.");
+    return res.status(400).send("No files were uploaded");
   }
 
-  if (directoryId === undefined) {
-    return res.status(400).send("directoryId is not specified");
+  console.log(groupId, files);
+
+  const group = await Document.findById(groupId);
+
+  if (!group) {
+    return res.status(400).send("No such group");
   }
 
-  const dirConfig = filesConfig[directoryId];
-
-  const directoryPath = path.join(
-    __dirname,
-    "../data/files/files" + directoryId
-  );
+  if (!files || files.length === 0) {
+    return res.status(400).send("No files provided");
+  }
 
   // Combine async files move promises
-  const promiseArr = [];
   for (let prop in files) {
     if (files.hasOwnProperty(prop)) {
       const file = files[prop];
-      promiseArr.push(file.mv(path.join(directoryPath, file.name)));
+
+      // Making file's readable stream for gridfs
+      const readableStream = new streamBuffers.ReadableStreamBuffer({
+        frequency: 0, // in milliseconds.
+        chunkSize: 32768, // in bytes.
+        initialSize: file.size,
+      });
+      readableStream.put(file.data);
+      readableStream.stop();
+
+      const options = { filename: file.name, contentType: file.mimetype };
+      // Saving files to db and save their metadata
+      Files.write(options, readableStream, async (error, file) => {
+        if (error) {
+          return res.status(500).send("File saving failure");
+        }
+        // Add name of file and id to group
+        await group.updateOne({
+          $push: {
+            files: {
+              name: file.filename,
+              id: file._id,
+            },
+          },
+        });
+
+        // Sending updated documents
+        res.status(200).send(await Document.find({}));
+      });
     }
   }
+};
 
-  // When all files are uploaded
-  Promise.all(promiseArr).then(
-    () => {
-      // Read all files in directory
-      dirConfig.fileNames = fs.readdirSync(directoryPath);
-      updateFilesConfig(filesConfig);
-      // Send updated filesConfig
-      res.status(200).send(filesConfig);
-    },
-    (err) => res.status(500).send(err)
-  );
-}
+const deleteFile = async (req, res) => {
+  const { groupId, fileId } = req.query;
 
-function deleteFile(req, res) {
-  const directoryId = req.query.directoryId;
-  const fileName = req.query.fileName;
-
-  const filesConfig = readFilesConfig();
-
-  if (!directoryId === undefined) {
-    return res.status(400).send("directoryId is not specified");
+  if (!groupId) {
+    return res.status(400).send("No group id provided");
   }
 
-  if (!fileName) {
-    return res.status(400).send("fileName is not specified");
+  if (!fileId) {
+    return res.status(400).send("No file id provided");
   }
 
-  const dirConfig = filesConfig[directoryId];
+  let group = await Document.findById(groupId);
 
-  const directoryPath = path.join(
-    __dirname,
-    "../data/files/files" + directoryId
-  );
+  if (!group) {
+    return res.status(400).send("No such group");
+  }
 
-  // Delete file async
-  fs.unlink(path.join(directoryPath, fileName), (err) => {
-    if (err) {
-      res.status(500).send(err);
-      return;
+  group = await group.updateOne({ $pull: { files: { id: fileId } } });
+
+  if (!group) {
+    return res.status(400).send("Delete failure");
+  }
+
+  await Files.deleteOne({ _id: fileId });
+
+  res.status(200).send(await Document.find({}));
+};
+
+const downloadFile = async (req, res) => {
+  const { fileId } = req.query;
+
+  if (!fileId) {
+    return res.status(400).send("No file id provided");
+  }
+
+  Files.read({ _id: fileId }, (error, file) => {
+    console.log(error, file);
+    if (error) {
+      return res.status(400).send("File with such id was not found");
     }
-    // Read all files in directory
-    dirConfig.fileNames = fs.readdirSync(directoryPath);
-    updateFilesConfig(filesConfig);
-    // Send updated filesConfig
-    res.status(200).send(filesConfig);
+
+    res.status(200).send(file);
   });
-}
-
-function downloadFile(req, res) {
-  const directoryId = req.query.directoryId;
-  const fileName = req.query.fileName;
-  res.download(
-    path.join(__dirname, "../data/files/files" + directoryId, fileName)
-  );
-}
+};
 
 router
   .get("/all", getFiles)
