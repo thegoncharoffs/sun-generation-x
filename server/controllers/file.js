@@ -1,21 +1,10 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const gridfs = require("mongoose-gridfs");
 const streamBuffers = require("stream-buffers");
-
+const { createModel } = require("mongoose-gridfs");
 const verifyToken = require("../middlewares/verifyToken");
 const Document = require("../models/Document");
 
 const router = express.Router();
-
-// Container for files
-let Files;
-mongoose.connection.on("connected", () => {
-  Files = gridfs.createModel({
-    modelName: "Files",
-    connection: mongoose.connection,
-  });
-});
 
 const getFiles = async (req, res) => {
   res.status(200).send(await Document.find({}));
@@ -33,8 +22,6 @@ const uploadFiles = async (req, res) => {
     return res.status(400).send("No files were uploaded");
   }
 
-  console.log(groupId, files);
-
   const group = await Document.findById(groupId);
 
   if (!group) {
@@ -44,6 +31,9 @@ const uploadFiles = async (req, res) => {
   if (!files || files.length === 0) {
     return res.status(400).send("No files provided");
   }
+
+  // Use default bucket for files
+  const Files = createModel();
 
   // Combine async files move promises
   for (let prop in files) {
@@ -60,11 +50,13 @@ const uploadFiles = async (req, res) => {
       readableStream.stop();
 
       const options = { filename: file.name, contentType: file.mimetype };
+
       // Saving files to db and save their metadata
       Files.write(options, readableStream, async (error, file) => {
         if (error) {
-          return res.status(500).send("File saving failure");
+          return res.status(500).send("File save failure");
         }
+
         // Add name of file and id to group
         await group.updateOne({
           $push: {
@@ -102,12 +94,19 @@ const deleteFile = async (req, res) => {
   group = await group.updateOne({ $pull: { files: { id: fileId } } });
 
   if (!group) {
-    return res.status(400).send("Delete failure");
+    return res.status(400).send("Group update failure");
   }
 
-  await Files.deleteOne({ _id: fileId });
+  // Use default bucket for files
+  const Files = createModel();
 
-  res.status(200).send(await Document.find({}));
+  Files.unlink(fileId, async (error) => {
+    if (error) {
+      return res.status(400).send("Delete failure");
+    }
+
+    res.status(200).send(await Document.find({}));
+  });
 };
 
 const downloadFile = async (req, res) => {
@@ -117,13 +116,16 @@ const downloadFile = async (req, res) => {
     return res.status(400).send("No file id provided");
   }
 
-  Files.read({ _id: fileId }, (error, file) => {
-    console.log(error, file);
+  // Use default bucket for files
+  const Files = createModel();
+
+  Files.findById(fileId, (error, file) => {
     if (error) {
       return res.status(400).send("File with such id was not found");
     }
 
-    res.status(200).send(file);
+    const readStream = file.read();
+    readStream.pipe(res);
   });
 };
 
