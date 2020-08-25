@@ -2,11 +2,16 @@
   "name": "sun-generation-x",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "serve": "ng serve -o",
+    "serve:local": "ng serve --host 0.0.0.0",
     "server": "nodemon ./server/server.js",
     "start": "node ./server/server.js",
     "build": "ng build --prod",
+    "data:insert": "node ./server/seeder -i",
+    "data:delete": "node ./server/seeder -d",
+    "heroku:push": "git push heroku master",
+    "heroku:logs": "heroku logs --tail",
+    "heroku:refresh": "heroku ps:scale web=1",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
